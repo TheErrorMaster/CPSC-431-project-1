@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $user = $_SESSION['valid_user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,19 +15,18 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a href="#" class="navbar-brand">
-            <img src="Humor.PNG" height="50" alt="PetConnect">
+            <img src="Humor.PNG" height="50" alt="Humor.ly ">
         </a>
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
     
         <div class ="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
-                <a href="home.php" class="nav-item nav-link active">Home</a>
-            </div>
-            <div class="navbar-nav">
-                <a href="product.html" class="nav-item nav-link active">Add A Product</a>
-            </div>
+            <?php
+             echo "<div class='navbar-nav'>";
+                echo "<a href='product.html' class='nav-item nav-link active'> Hello ".$user."</a>";
+            echo "</div>";
+            ?>
             
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
