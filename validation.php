@@ -20,14 +20,14 @@ function validNumber($num) {
 
 // checks if choice has starts with at least one 
 // letters,numbers, underscore, dot 
-// And at least 6 to 20 char that are letters \w
+// And at least 6 to 30 char that are letters \w
 function validUser($user,$choice) {
     validString($user);
     if(!preg_match('/^[a-zA-Z0-9_.]+$/', $user)){
         throw new Exception($choice.' not a valid input');
     }
-    if((strlen($user) < 6) || (strlen($user) > 20)){
-        throw new Exception($choice.' must be between 6 and 20 characters');
+    if((strlen($user) < 6) || (strlen($user) > 30)){
+        throw new Exception($choice.' must be between 6 and 30 characters');
     }
     return $user;
 }

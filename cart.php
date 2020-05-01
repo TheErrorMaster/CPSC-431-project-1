@@ -1,20 +1,21 @@
 <?php
-    require_once("query.php");
-    session_start();
-    // only users are allowed if not they go to errorpage
-    if(!isset($_SESSION['valid_user']))
-    {
-        echo "sorry log in";
-        header("location: error.html");
-    }
-    $user = $_SESSION['valid_user'];
+require_once("query.php");
+session_start();
+// only users are allowed if not they go to errorpage
+if(!isset($_SESSION['valid_user']))
+{
+    echo "sorry log in";
+    header("location: error.html");
+}
+$user = $_SESSION['valid_user'];
+$id = $_POST['recordID'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APP</title>
+    <title>profile</title>
     <link rel="stylesheet" type="text/css" href="stylesheet/home.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -23,8 +24,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- nav bar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
+<!-- nav bar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
         <a href="#" class="navbar-brand">
             <img src="Humor.PNG" height="50" alt="Humor.ly ">
         </a>
@@ -36,13 +37,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">HOME<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">CART<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#"><?php echo 'Hello '.$user; ?></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.php">Cart</a>
+                    <a class="nav-link" href="Home.php">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a href="logout.php" class="nav-item nav-link">Log out</a>
@@ -56,7 +57,7 @@
     $conn = db_connect();
 
     // get data
-    $query = "SELECT * FROM product";
+    $query = "SELECT * FROM product WHERE prod_id = '$id'";
     $result = $conn->query($query);
     // just in case something happes
     if(!$result) {
@@ -64,33 +65,22 @@
         exit;
     }
     
-    while($row = $result->fetch_row()) 
+    if($row = $result->fetch_row()) 
     {
         echo '<div class="list-content">'; // fileName 
         echo'<img src="uploads/'.$row[3].'"/ alt="Error on Displaying"></img>'; //picture
         echo'<div class="text">'.$row[1].'</div>'; // name
         echo'<div class="price">'. '$'.$row[2].'</div>'; // price
         echo'<div class="text">'. 'Description: '.$row[4].'</div>'; // description
-        echo'<form action="cart.php" method="post">';
-        echo'<input class="button" type="submit" name="id" value="ADD TO CART"/>';
-        echo'<input type="hidden" name="recordID" value="'.$row[0].'">';
-        echo'</form>';
         echo'</div>';
-
-
-        // echo '<a href="product?recordID='.$row[0].'">';
-        // echo '<div class="list-content">'; // fileName 
-        // echo'<img src="uploads/'.$row[3].'"/ alt="Error on Displaying"></img>'; //picture
-        // echo'<div class="text">'.$row[1].'</div>'; // name
-        // echo'<div class="price">'. '$'.$row[2].'</div>'; // price
-        // echo'<div class="text">'. 'Description: '.$row[4].'</div>'; // description
-        // echo'</div>';
-        // echo '</a>';
     }
 
     // close connection
     $result->close();
     $conn->close();
 ?>
+
+
+
 </body>
 </html>
