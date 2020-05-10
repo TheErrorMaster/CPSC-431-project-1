@@ -10,8 +10,8 @@ function db_connect() { // host, username, password, dbname
 }
 
 // register function
-function register($username, $email, $password, $phone,
-$street, $city, $state, $zip,
+function register($username, $email, $password, $phone, 
+$uploaded_file, $street, $city, $state, $zip,
 $name, $credit_number,$security)
 { 
     //connect to db
@@ -29,8 +29,8 @@ $name, $credit_number,$security)
 
     // else put in db
     // insert customer table
-    $query1 = "INSERT INTO customer(username, email, password, phone)
-    VALUES ('$username', '$email', sha1('".$password."'), '$phone')";
+    $query1 = "INSERT INTO customer(username, email, password, phone, photo)
+    VALUES ('$username', '$email', sha1('".$password."'), '$phone', '$uploaded_file')";
     // $query1 = "INSERT INTO customer(username, email, password, phone)
     // VALUES ('$username', '$email', '$password', '$phone')";
     $result1 = $conn->query($query1);

@@ -1,16 +1,16 @@
 <?php 
     session_start();
-    $old = $_SESSION['valid_user'];
+    $old = $_SESSION['name'];
 
-    unset($_SESSION['valid_user']);
+    unset($_SESSION['name']);
     $result = session_destroy();
     header( 'Location: index.html');
     if(!empty($old)){
         if($result) {
-            echo 'Logged out';
-            header( 'Location: index.html');
+            header( 'Location: index.html'); // login again 
         } else {
             echo "Could not log you out";
+            header("location: error.html");
         }
     } else {
         echo 'you were not logged in.';

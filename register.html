@@ -9,24 +9,24 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <div class="box">
-        <form action="registerVerify.php" method="post">
+        <form action="registerVerify.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="100000000000">
             <h1>Create Account</h1>
-            <fieldset>
-                <legend>
-                    <h2>Account Detail</h2>
-                </legend>
+            <div class="row">
+            <div class="col-sm-6">
+                <h2>Account Detail</h2>
                 <input type="text" class="form-control" placeholder="Username" name="username" required autofocus><br>
                 <input type="email" class="form-control" placeholder="Email" name="email" required><br>
                 <input type="password" class="form-control" placeholder="Password" name="password" required><br>
                 <input type="text" class="form-control" placeholder="Phone Number" name="phone" required><br>
-            </fieldset>
-            <fieldset>
-                <legend>
-                    <h2>Addresss</h2>
-                </legend>
+            </div>
+            <div class="col-sm-6">
+                <h2>User Profile Picture Upload</h2>
+                <input type="file" name="fileToUpload" id="fileToUpload" required>
+            </div>
+            <div class="col-sm-6">
+                <h2>Addresss</h2>
                 <input type="text" class="form-control" placeholder="Street" name="street" required><br>
-
                 <input type="text" class="form-control" placeholder="City" name="city" required><br>
                 <select class="form-control" name="state" required >
                     <option hidden disabld selected value> -- Select A State -- </option>
@@ -83,18 +83,16 @@
                     <option value="WY">Wyoming</option>
                 </select> <br>
                 <input type="text" class="form-control" placeholder="Zip Code" name="zip" required><br>
-            </fieldset>
-            <fieldset>
-                <legend>
-                    <h2>Credit Info</h2>
-                </legend>
+            </div>
+            <div class="col-sm-6">
+                <h2>Credit Info</h2>
                 <input type="text" class="form-control" placeholder="Name" name="name" required><br>
                 <input type="text" class="form-control" placeholder="Credit Number" name="credit_number" required><br>
                 <input type="text" class="form-control" placeholder="Security Number" name="security" required><br>
-            </fieldset>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-        </form>
+            </div>
     </div>
-
+    <input type="submit" class="btn btn-primary justified" name="submit"></button>
+    </form>
 </body>
+
 </html>

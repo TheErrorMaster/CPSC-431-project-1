@@ -18,22 +18,29 @@ html, body {
     margin: 10px;
 }
 
-.text {
+.titleText {
+    margin: 0;
+    margin-left: 15px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.descText {
+    margin: 0;
     padding-left: 15px;
     font-weight: bold;
 }
 
-.price {
+.priceText {
+    margin: 0;
     padding-left: 15px;
     font-weight: bold;
     color: green;
 }
 
-.button {
+.btnFormat {
     margin-left: 100px;
     width: 200px;
-    background-color: blue;
-    color: white;
 }
 
 .container {
